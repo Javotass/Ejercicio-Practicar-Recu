@@ -1,56 +1,72 @@
-🧪 Examen Tipo - API GraphQL de Museos
-🎯 Objetivo
-Desarrollar una API en GraphQL utilizando Deno, Apollo Server y MongoDB Atlas, que permita gestionar una lista de museos.
+# 🏛️ API GraphQL de Museos
 
-📌 Requisitos
-🔧 Mutaciones
-addMuseum (3 puntos):
-Permite añadir un nuevo museo. Recibe los siguientes parámetros:
+Este proyecto implementa una API en **GraphQL** para gestionar una lista de museos, utilizando **Deno**, **Apollo Server** y **MongoDB Atlas**.  
+La API permite añadir, consultar y eliminar museos, validando los datos mediante **API Ninjas**.
 
-name: Nombre del museo (String), ej. "Museo del Prado"
+---
 
-address: Dirección del museo (String), ej. "Calle Ruiz de Alarcón 23"
+## 🧪 Enunciado del Examen
 
-city: Ciudad donde se encuentra (String), ej. "Madrid"
+### 🎯 Objetivo
 
-phone: Número de teléfono con prefijo nacional (String), ej. "+34913221100"
+Desarrollar una API en GraphQL que permita gestionar una lista de museos.
 
-⚠️ Requisitos:
+---
 
-Validar el número de teléfono con la API de API Ninjas.
+### 📌 Requisitos
 
-No permitir duplicados por número de teléfono.
+#### 🔧 Mutaciones
 
-deleteMuseum (2 puntos):
-Elimina un museo por su id.
-Devuelve true si se ha eliminado correctamente o false si no existe.
+- **`addMuseum`** (3 puntos):  
+  Añade un nuevo museo con los siguientes campos:
+  - `name`: Nombre del museo (String), ej. `"Museo del Prado"`
+  - `address`: Dirección (String), ej. `"Calle Ruiz de Alarcón 23"`
+  - `city`: Ciudad (String), ej. `"Madrid"`
+  - `phone`: Teléfono con prefijo nacional (String), ej. `"+34913221100"`
 
-🔍 Consultas
-getMuseum (3 puntos):
-Obtiene los detalles de un museo por su id:
+  ⚠️ Requisitos:
+  - Validar que el teléfono es válido mediante API Ninjas.
+  - No permitir duplicados por número de teléfono.
 
-id: ID generado por MongoDB
+- **`deleteMuseum`** (2 puntos):  
+  Elimina un museo por su `id`.  
+  Devuelve `true` si se ha eliminado correctamente, `false` en caso contrario.
 
-name: Nombre del museo
+---
 
-address: Dirección completa (formato: "Calle, Ciudad, País")
+#### 🔍 Consultas
 
-phone: Teléfono
+- **`getMuseum`** (3 puntos):  
+  Consulta un museo por su ID:
+  - `id`
+  - `name`
+  - Dirección completa: `"address, city, country"`
+  - `phone`
+  - `temperature`: Temperatura actual de la ciudad
+  - `localtime`: Hora local en formato `"hh:mm"`
 
-temperature: Temperatura actual (API de Clima de API Ninjas)
+- **`getMuseums`** (2 puntos):  
+  Devuelve todos los museos registrados en una ciudad:
+  - Recibe: `city: String`
+  - Devuelve: Lista con todos los campos definidos en `getMuseum`
 
-localtime: Hora local (API de Zona Horaria de API Ninjas)
+---
 
-getMuseums (2 puntos):
-Devuelve una lista de museos filtrados por ciudad:
+### ✅ Notas importantes
 
-Recibe: city: String
+- Se utiliza exclusivamente la versión gratuita de API Ninjas para:
+  - Validación de teléfono
+  - Información meteorológica
+  - Hora local
+- No se permite duplicar números de teléfono.
+- La información geográfica (latitud, longitud, país) también se obtiene de API Ninjas.
 
-Devuelve: Lista de museos con los campos definidos en getMuseum
+---
 
-✅ Notas importantes
-La validación del teléfono y la obtención de clima, país y hora se realiza exclusivamente con APIs gratuitas de API Ninjas.
+## 🚀 Instalación y uso
 
-No se permite el uso de endpoints premium.
+### 1. Clonar repositorio
 
-No se permite más de un museo con el mismo número de teléfono.
+```bash
+git clone https://github.com/tuusuario/api-museos-graphql.git
+cd api-museos-graphql
